@@ -1,5 +1,9 @@
 package com.ibatech.stepproject.entities;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Basic;
@@ -19,8 +23,11 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author heisenberg
+ * @author Shafa
  */
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "logging_log")
 @XmlRootElement
@@ -39,64 +46,10 @@ public class Logging_log implements Serializable {
     @Column(name = "log_date")
     @Temporal(TemporalType.TIMESTAMP)
     private Date logDate;
+
     @JoinColumn(name = "id_user", referencedColumnName = "id")
     @ManyToOne
     private Users idUser;
 
-    public Logging_log() {
-    }
-
-    public Logging_log(Integer id) {
-        this.id = id;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public Date getLogDate() {
-        return logDate;
-    }
-
-    public void setLogDate(Date logDate) {
-        this.logDate = logDate;
-    }
-
-    public Users getIdUser() {
-        return idUser;
-    }
-
-    public void setIdUser(Users idUser) {
-        this.idUser = idUser;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Logging_log)) {
-            return false;
-        }
-        Logging_log other = (Logging_log) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "entities.LoggingLog[ id=" + id + " ]";
-    }
 
 }

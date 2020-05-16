@@ -1,6 +1,10 @@
 package com.ibatech.stepproject.entities;
 
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Basic;
@@ -21,8 +25,11 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author heisenberg
+ * @author Suzy
  */
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "messages")
 @XmlRootElement
@@ -38,12 +45,13 @@ public class Messages implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    @Lob
+    @Lob//large database object
     @Column(name = "message")
     private String message;
     @Column(name = "date")
     @Temporal(TemporalType.TIMESTAMP)
     private Date date;
+
     @JoinColumn(name = "id_user_from", referencedColumnName = "id")
     @ManyToOne
     private Users idUserFrom;
@@ -51,76 +59,5 @@ public class Messages implements Serializable {
     @ManyToOne
     private Users idUserTo;
 
-    public Messages() {
-    }
-
-    public Messages(Integer id) {
-        this.id = id;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
-    }
-
-    public Users getIdUserFrom() {
-        return idUserFrom;
-    }
-
-    public void setIdUserFrom(Users idUserFrom) {
-        this.idUserFrom = idUserFrom;
-    }
-
-    public Users getIdUserTo() {
-        return idUserTo;
-    }
-
-    public void setIdUserTo(Users idUserTo) {
-        this.idUserTo = idUserTo;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Messages)) {
-            return false;
-        }
-        Messages other = (Messages) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "entities.Messages[ id=" + id + " ]";
-    }
 
 }

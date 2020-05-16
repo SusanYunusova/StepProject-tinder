@@ -17,8 +17,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode
-@ToString
 @Table(name = "likes")
 @XmlRootElement
 @NamedQueries({
@@ -39,9 +37,11 @@ public class Likes implements Serializable {
     @Column(name = "date")
     @Temporal(TemporalType.TIMESTAMP)
     private LocalDateTime date;
+
     @JoinColumn(name = "id_user_from", referencedColumnName = "id")
     @ManyToOne
     private Users idUserFrom;
+
     @JoinColumn(name = "id_user_to", referencedColumnName = "id")
     @ManyToOne
     private Users idUserTo;

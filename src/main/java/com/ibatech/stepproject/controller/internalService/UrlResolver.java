@@ -1,6 +1,7 @@
 package com.ibatech.stepproject.controller.internalService;
 
 
+import com.ibatech.stepproject.dao.DaoFactory;
 import com.ibatech.stepproject.entities.Likes;
 import com.ibatech.stepproject.entities.Users;
 import lombok.extern.slf4j.Slf4j;
@@ -16,19 +17,8 @@ import java.util.List;
 @Slf4j
 public class UrlResolver {
 
-    private  EntityManagerFactory emf;
-    private  EntityManager em;
-
-
     public UrlResolver(HttpServletRequest request, HttpServletResponse response) {
-        log.info("constructor");
-        try {
-            emf = Persistence.createEntityManagerFactory("tinderPU");
-            em = emf.createEntityManager();
-        }catch (Exception e){
-            System.out.println("Error persistence : {}"+e);
-        }
-        log.info("entity manager created");
+
     }
 
     public String getUrl() {
@@ -43,20 +33,7 @@ public class UrlResolver {
                 .build();
 
         System.out.println("User : "+user.toString());
-        try {
-            em.persist(user);
-            em.getTransaction().begin();
-            em.getTransaction().commit();
-
-            List<Likes> resultList = em.createNamedQuery("Likes.findAll", Likes.class).getResultList();
-            resultList.forEach(likes -> {
-                LocalDateTime date = likes.getDate();
-                Users idUserFrom = likes.getIdUserFrom();
-
-            });
-        }catch (Exception e){
-            System.out.println("Error saving : "+e);
-        }
+        DaoFactory.getDao(DaoFactory.DaoNames.USERS).create(user);
         return "index.jsp";
     }
 }
