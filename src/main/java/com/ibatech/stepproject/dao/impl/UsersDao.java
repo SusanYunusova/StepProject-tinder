@@ -62,7 +62,10 @@ public class UsersDao implements Dao<Users> {
             System.out.println("trying to update user");
             getEMCreator().getEntityManager().persist(users);
             getEMCreator().openTransaction();
-        }catch ()
+            return true;
+        }catch (Exception e){
+            getEMCreator().rollBack();
         return false;
+        }
     }
 }
