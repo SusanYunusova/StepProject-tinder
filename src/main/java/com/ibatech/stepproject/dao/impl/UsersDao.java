@@ -1,7 +1,6 @@
 package com.ibatech.stepproject.dao.impl;
 
 import com.ibatech.stepproject.dao.Dao;
-import com.ibatech.stepproject.dao.EntityManagerCreator;
 import com.ibatech.stepproject.entities.Users;
 
 import java.util.ArrayList;
@@ -66,6 +65,17 @@ public class UsersDao implements Dao<Users> {
         }catch (Exception e){
             getEMCreator().rollBack();
         return false;
+        }
+    }
+
+    public Optional<Users> getByEmailAndPassword(String email, String password){
+        try{
+            return Optional.ofNullable(getEMCreator().getEntityManager().createNamedQuery("Users.findAllByEmailAndPassword",Users.class)
+                    .setParameter("email",email)
+                    .setParameter("password",password)
+                    .getSingleResult());
+        }catch (Exception e){
+            return null;
         }
     }
 }
