@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="tinder@localhost" uuid="34ef6b5a-5c89-4c7e-9ef0-c49a856c3ea3">
+    <data-source source="LOCAL" name="tinder@localhost" uuid="d39daf08-3b61-4281-a814-22dbd4bcfd35">
       <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>

@@ -4,9 +4,8 @@ package com.ibatech.stepproject.entities;
 import lombok.*;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.util.Date;
 import javax.persistence.*;
-import javax.ws.rs.ext.ParamConverter;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -36,7 +35,7 @@ public class Likes implements Serializable {
     private Integer likeStatus;
     @Column(name = "date")
     @Temporal(TemporalType.TIMESTAMP)
-    private LocalDateTime date;
+    private Date date;
 
     @JoinColumn(name = "id_user_from", referencedColumnName = "id")
     @ManyToOne

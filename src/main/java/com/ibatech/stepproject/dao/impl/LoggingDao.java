@@ -21,7 +21,7 @@ public class LoggingDao implements Dao<Logging> {
 
     @Override
     public Collection<Logging> getAll() {
-        return getEMCreator().getEntityManager().createNamedQuery("Logging.findAll",Logging.class).getResultList();
+        return getEMCreator().getEntityManager().createNamedQuery("Logging_log.findAll",Logging.class).getResultList();
     }
 
 

@@ -1,6 +1,7 @@
 package com.ibatech.stepproject.controller.internalService;
 
 
+import com.ibatech.stepproject.dao.Dao;
 import com.ibatech.stepproject.dao.DaoFactory;
 import com.ibatech.stepproject.entities.Likes;
 import com.ibatech.stepproject.entities.Users;
@@ -33,7 +34,8 @@ public class UrlResolver {
                 .build();
 
         System.out.println("User : "+user.toString());
-        DaoFactory.getDao(DaoFactory.DaoNames.USERS).create(user);
+        Dao<Users> dao = DaoFactory.getDao(DaoFactory.DaoNames.USERS);
+        dao.create(user);
         return "index.jsp";
     }
 }

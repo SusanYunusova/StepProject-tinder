@@ -33,7 +33,7 @@
       <version>7.0</version>
       <scope>provided</scope>
     </dependency>
-
+<!--//todo en son atdigim-->
     <dependency>
       <groupId>org.eclipse.persistence</groupId>
       <artifactId>eclipselink</artifactId>
@@ -49,18 +49,34 @@
         </exclusion>
       </exclusions>
     </dependency>
+    <dependency>
+      <groupId>org.eclipse.persistence</groupId>
+      <artifactId>eclipselink</artifactId>
+      <version>2.7.0</version>
+      <exclusions>
+        <exclusion>
+          <groupId>org.eclipse.persistence</groupId>
+          <artifactId>javax.persistence</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>org.eclipse.persistence</groupId>
+      <artifactId>javax.persistence</artifactId>
+      <version>2.1.1</version>
+    </dependency>
 <!--    <dependency>-->
 <!--      <groupId>org.eclipse.persistence</groupId>-->
 <!--      <artifactId>eclipselink</artifactId>-->
 <!--      <version>2.7.0</version>-->
 <!--&lt;!&ndash;      <scope>provided</scope>&lt;!&ndash; since I'm running inside a Java EE container &ndash;&gt;&ndash;&gt;-->
 <!--    </dependency>-->
-    <dependency>
-      <groupId>org.eclipse.persistence</groupId>
-      <artifactId>javax.persistence</artifactId>
-      <version>2.2.1</version>
-<!--      <scope>provided</scope>&lt;!&ndash; since I'm running inside a Java EE container &ndash;&gt;-->
-    </dependency>
+<!--    <dependency>-->
+<!--      <groupId>org.eclipse.persistence</groupId>-->
+<!--      <artifactId>javax.persistence</artifactId>-->
+<!--      <version>2.2.1</version>-->
+<!--&lt;!&ndash;      <scope>provided</scope>&lt;!&ndash; since I'm running inside a Java EE container &ndash;&gt;&ndash;&gt;-->
+<!--    </dependency>-->
 
 
     <dependency>
@@ -68,7 +84,21 @@
       <artifactId>mysql-connector-java</artifactId>
       <version>8.0.20</version>
     </dependency>
-
+    <dependency>
+      <groupId>org.eclipse.persistence</groupId>
+      <artifactId>eclipselink</artifactId>
+      <version>2.7.4</version>
+      <exclusions>
+        <exclusion>
+          <groupId>org.eclipse.persistence</groupId>
+          <artifactId>javax.persistence</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.eclipse.persistence</groupId>
+          <artifactId>jakarta.persistence</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
     <dependency>
       <groupId>org.projectlombok</groupId>
       <artifactId>lombok</artifactId>
