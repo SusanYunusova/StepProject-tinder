@@ -28,19 +28,26 @@ public class UsersDao implements Dao<Users> {
 
     @Override
     public Collection<Users> getAllBy(Predicate<Users> p) {
-        return  getAll().stream().filter(p).collect(Collectors.toList());
+        return getAll().stream().filter(p).collect(Collectors.toList());
     }
 
     @Override
-    public void create(Users data) {
+    public Users create(Users data) {
         try {
             System.out.println("trying to create user");
-        getEMCreator().getEntityManager().persist(data);
-        getEMCreator().openTransaction();
+            System.out.println("before creating user : "+data);
+            getEMCreator().getEntityManager().getTransaction().begin();
+            getEMCreator().getEntityManager().persist(data);
+//            getEMCreator().openTransaction();
+            getEMCreator().getEntityManager().flush();
+            getEMCreator().getEntityManager().getTransaction().commit();
+            System.out.println("After creating user : "+data);
 
+            return data;
         }catch (Exception e){//todo logs
             System.out.println("error creting user.."+e);
             getEMCreator().rollBack();
+            return null;
         }
     }
 

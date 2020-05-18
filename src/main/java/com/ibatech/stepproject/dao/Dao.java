@@ -9,7 +9,7 @@ public interface Dao<A> {
     Collection<A> getAllById(int id);
     Collection<A> getAll();
     Collection<A> getAllBy(Predicate<A> p);
-    void create(A data);
+    A create(A data);
     boolean delete(int id);
     boolean update(A a);
     default EntityManagerCreator getEMCreator(){

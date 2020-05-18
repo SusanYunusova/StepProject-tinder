@@ -59,7 +59,10 @@ public class Users implements Serializable {
     private Integer age;
     @Column(name = "gender")
     private String gender;
-
+    @Column(name = "image_url")
+    private String imageUrl;
+    @Column(name = "job_title")
+    private String jobTitle;
 
     @OneToMany(mappedBy = "idUser")
     private List<Logging_log> logging_logList;

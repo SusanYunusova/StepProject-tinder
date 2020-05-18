@@ -26,7 +26,7 @@
     <input name="password" type="password" id="inputPassword" class="form-control" placeholder="Password" required>
     <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
     <p class="mt-5 mb-3 text-muted">&copy; Tinder 2018</p>
-    <a href="/Dispatcher?uid=register">sign up</a>
+    <a href="/StepProject_war/Dispatcher?uid=register">sign up</a>
     <input type="hidden" name="uid" value="login"/>
 </form>
 </body>

@@ -33,7 +33,7 @@ public class MessagesDao implements Dao<Messages> {
     }
 
     @Override
-    public void create(Messages data) {
+    public Messages create(Messages data) {
         try {
             System.out.println("trying to create massages");
             getEMCreator().getEntityManager().persist(data);
@@ -42,6 +42,8 @@ public class MessagesDao implements Dao<Messages> {
             System.out.println("Error creting messages " + e);
             getEMCreator().rollBack();
         }
+
+        return null;
     }
 
 

@@ -32,7 +32,7 @@ public class LikesDao implements Dao<Likes> {
     }
 
     @Override
-    public void create(Likes data) {
+    public Likes create(Likes data) {
         try {
             System.out.println("trying to creat likes..");
             getEMCreator().getEntityManager().persist(data);
@@ -41,6 +41,7 @@ public class LikesDao implements Dao<Likes> {
             System.out.println("Error creating like " + e);
             getEMCreator().rollBack();
         }
+        return null;
     }
 
     @Override
