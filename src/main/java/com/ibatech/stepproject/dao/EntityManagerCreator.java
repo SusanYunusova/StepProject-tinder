@@ -18,6 +18,7 @@ public class EntityManagerCreator {
             instance = new EntityManagerCreator();
         }
         return instance;
+
     }
 
     public EntityManagerCreator() {
