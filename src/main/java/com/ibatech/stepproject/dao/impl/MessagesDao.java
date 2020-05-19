@@ -5,6 +5,7 @@ import com.ibatech.stepproject.entities.Messages;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
@@ -39,7 +40,7 @@ public class MessagesDao implements Dao<Messages> {
             getEMCreator().getEntityManager().persist(data);
             getEMCreator().openTransaction();
         } catch (Exception e) {
-            System.out.println("Error creting messages " + e);
+            System.out.println("Error creating messages " + e);
             getEMCreator().rollBack();
         }
 
@@ -68,5 +69,15 @@ public class MessagesDao implements Dao<Messages> {
             getEMCreator().rollBack();
             return false;
         }
+    }
+    public List<Messages> getUserMessages(int idUserFrom, int idUserTo){
+      return  getEMCreator()
+                .getEntityManager()
+                .createNamedQuery("Messages.findByFromTo",Messages.class)
+                .setParameter("userFrom",idUserFrom)
+                .setParameter("userTo",idUserTo)
+                .getResultList();
+
+
     }
 }

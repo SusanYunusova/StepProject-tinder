@@ -24,7 +24,6 @@ import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
- *
  * @author Suzy
  */
 @Data
@@ -36,6 +35,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
         @NamedQuery(name = "Messages.findAll", query = "SELECT m FROM Messages m")
         , @NamedQuery(name = "Messages.findById", query = "SELECT m FROM Messages m WHERE m.id = :id")
+        , @NamedQuery(name = "Messages.findByFromTo", query = "SELECT m FROM Messages m WHERE (m.idUserFrom = :userFrom " +
+        "and m.idUserTo = :userTo ) or (m.idUserFrom = :userTo  and m.idUserTo = :userFrom) ")
         , @NamedQuery(name = "Messages.findByDate", query = "SELECT m FROM Messages m WHERE m.date = :date")})
 public class Messages implements Serializable {
 

@@ -68,10 +68,10 @@ public class Users implements Serializable {
     private List<Logging_log> logging_logList;
 
     @OneToMany(mappedBy = "idUserFrom")
-    private List<Messages> messagesList;
+    private List<Messages> messagesListFrom;
 
     @OneToMany(mappedBy = "idUserTo")
-    private List<Messages> messagesList1;
+    private List<Messages> messagesListTo;
 
     @OneToMany(mappedBy = "idUserFrom")
     private List<Likes> likesListFrom;
@@ -80,6 +80,9 @@ public class Users implements Serializable {
     private List<Likes> likesListTo;
 
 
+    public String getFullName(){
+        return  name+" "+surname;
+    }
 
 
 

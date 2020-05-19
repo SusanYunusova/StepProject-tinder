@@ -55,6 +55,7 @@
                     <!--/col-->
                 </div>
              <a href="/StepProject_war/Dispatcher?uid=people-list">Liked Users</a>
+             <a href="/StepProject_war/Dispatcher?uid=logout">Log out</a>
                 <!--/row-->
             </div>
             <!--/card-block-->

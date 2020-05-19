@@ -22,7 +22,6 @@ public class UrlResolver {
     private HttpServletResponse response;
 
 
-
     public UrlResolver(HttpServletRequest request, HttpServletResponse response) {
         this.request = request;
         this.response = response;
@@ -35,27 +34,28 @@ public class UrlResolver {
         System.out.println("uid : " + uid);
         switch (uid) {
             case "login": {
-                return ServiceFactory.getService(ServiceFactory.ServiceNames.LOGIN).startProcess(request,response);
+                return ServiceFactory.getService(ServiceFactory.ServiceNames.LOGIN).startProcess(request, response);
             }
             case "register": {
                 return "register.jsp";
             }
             case "save": {
-                return ServiceFactory.getService(ServiceFactory.ServiceNames.REGISTRATION).startProcess(request,response);
+                return ServiceFactory.getService(ServiceFactory.ServiceNames.REGISTRATION).startProcess(request, response);
             }
             case "dislike":
             case "like": {
-                return ServiceFactory.getService(ServiceFactory.ServiceNames.LIKES).startProcess(request,response);
+                return ServiceFactory.getService(ServiceFactory.ServiceNames.LIKES).startProcess(request, response);
             }
             case "people-list":
-                return ServiceFactory.getService(ServiceFactory.ServiceNames.PEOPLE_LIST).startProcess(request,response);
+                return ServiceFactory.getService(ServiceFactory.ServiceNames.PEOPLE_LIST).startProcess(request, response);
+            case "messages":
+                return ServiceFactory.getService(ServiceFactory.ServiceNames.MESSAGES).startProcess(request, response);
 
             default: {
                 return "index.jsp";
             }
         }
     }
-
 
 
 //todo commentleri axirda sil

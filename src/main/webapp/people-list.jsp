@@ -1,4 +1,6 @@
 <!doctype html>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page isELIgnored="false" %>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -14,8 +16,20 @@
 
     <!-- Custom styles for this template -->
     <link rel="stylesheet" href="css/style.css">
+    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
 </head>
 <body>
+<script >
+    function btnFunction(value) {
+        document.myForm.idLikes.value= value;
+        document.myForm.submit();
+
+
+    }
+</script>
+<form name="myForm" action="/StepProject_war/Dispatcher" method="post" >
+    <input type="hidden" name="idLikes"/>
+    <input type="hidden" name="uid" value="messages"/>
 
 <div class="container">
     <div class="row">
@@ -26,76 +40,35 @@
                 </div>
                 <div class="panel-body">
                     <div class="table-container">
-                        <table class="table-users table" border="0">
+                        <table class="table-users table" border="0" id="idTable" >
                             <tbody>
-                            <tr>
-                                <td width="10">
-                                    <div class="avatar-img">
-                                        <img class="img-circle" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxhcCYW4QDWMOjOuUTxOd50KcJvK-rop9qE9zRltSbVS_bO-cfWA" />  
-                                    </div>
+                            <c:forEach items="${listOfLikedUsers}" var="like">
+                                <tr  id="idRow">
+                                    <td width="10">
+                                        <div class="avatar-img">
+                                            <img class="img-circle" src="${like.idUserTo.imageUrl}" />
+                                        </div>
 
-                                </td>
-                                <td class="align-middle">
-                                    Herbert Hoover
-                                </td>
-                                <td class="align-middle">
-                                    Builder Sales Agent
-                                </td>
-                                <td  class="align-middle">
-                                    Last Login:  6/10/2017<br><small class="text-muted">5 days ago</small>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td width="10">
-                                    <div class="avatar-img">
-                                        <img class="img-circle" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxhcCYW4QDWMOjOuUTxOd50KcJvK-rop9qE9zRltSbVS_bO-cfWA" />  
-                                    </div>
+                                    </td>
+                                    <td class="align-middle">
+                                            ${like.idUserTo.fullName}
+                                    </td>
+                                    <td class="align-middle">
+                                            ${like.idUserTo.jobTitle}
+                                    </td>
+                                    <td class="align-middle">
+                                        Last Login: 6/10/2017<br><small class="text-muted">5 days ago</small>
+                                    </td>
+                                    <td  class="align-middle">
+                                            <button type="submit" onclick="btnFunction(${like.idUserTo.id})"  class="btn btn-outline-success btn-block" name="id"
+                                                value="Send message" ></button>
 
-                                </td>
-                                <td class="align-middle">
-                                    Herbert Hoover
-                                </td>
-                                <td class="align-middle">
-                                    Builder Sales Agent
-                                </td>
-                                <td  class="align-middle">
-                                    Last Login:  6/10/2017<br><small class="text-muted">5 days ago</small>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td width="10">
-                                    <div class="avatar-img">
-                                        <img class="img-circle" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxhcCYW4QDWMOjOuUTxOd50KcJvK-rop9qE9zRltSbVS_bO-cfWA" />  
-                                    </div>
+                                    </td>
+                                </tr>
+                            </c:forEach>
+                            <a href="/StepProject_war/Dispatcher?uid=logout">Log out</a>
+                            <a href="/StepProject_war/Dispatcher?uid=like-page">Find love</a>
 
-                                </td>
-                                <td class="align-middle">
-                                    Herbert Hoover
-                                </td>
-                                <td class="align-middle">
-                                    Builder Sales Agent
-                                </td>
-                                <td  class="align-middle">
-                                    Last Login:  6/10/2017<br><small class="text-muted">5 days ago</small>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td width="10">
-                                    <div class="avatar-img">
-                                        <img class="img-circle" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxhcCYW4QDWMOjOuUTxOd50KcJvK-rop9qE9zRltSbVS_bO-cfWA" />  
-                                    </div>
-
-                                </td>
-                                <td class="align-middle">
-                                    Herbert Hoover
-                                </td>
-                                <td class="align-middle">
-                                    Builder Sales Agent
-                                </td>
-                                <td  class="align-middle">
-                                    Last Login:  6/10/2017<br><small class="text-muted">5 days ago</small>
-                                </td>
-                            </tr>
                             </tbody>
                         </table>
                     </div>
@@ -104,6 +77,7 @@
         </div>
     </div>
 </div>
+</form>
 
 </body>
 </html>
