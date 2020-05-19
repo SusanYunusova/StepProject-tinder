@@ -13,6 +13,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author Suzy
  */
 @Entity
+@Builder
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

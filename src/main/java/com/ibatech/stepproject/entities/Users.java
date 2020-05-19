@@ -74,10 +74,10 @@ public class Users implements Serializable {
     private List<Messages> messagesList1;
 
     @OneToMany(mappedBy = "idUserFrom")
-    private List<Likes> likesList;
+    private List<Likes> likesListFrom;
 
     @OneToMany(mappedBy = "idUserTo")
-    private List<Likes> likesList1;
+    private List<Likes> likesListTo;
 
 
 

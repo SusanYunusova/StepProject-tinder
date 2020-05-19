@@ -18,8 +18,19 @@
     <!-- Custom styles for this template -->
     <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body style="background-color: #f5f5f5;">
-<form action="/StepProject_war/Dispatcher" method="post">
+<script >
+    function btnFunction(value) {
+        document.theForm.uid.value= value;
+        document.theForm.submit();
+
+
+    }
+</script>
+
+<form id="myForm" name="theForm" action="/StepProject_war/Dispatcher" method="post">
+    <input type="hidden" name="uid"/>
     <div class="col-4 offset-4">
         <div class="card">
             <div class="card-body">
@@ -31,18 +42,19 @@
                     </div>
 
                     <div class="col-12 col-lg-6">
-                        <button type="submit" class="btn btn-outline-danger btn-block"><span class="fa fa-times"></span>
+                        <button type="button" onclick="btnFunction('dislike')" class="btn btn-outline-danger btn-block">
+                            <span class="fa fa-times"></span>
                             Dislike
-                            <input type="hidden" name="uid" value="dislike"/>
                         </button>
                     </div>
                     <div class="col-12 col-lg-6">
-                        <button type="submit" class="btn btn-outline-success btn-block"><span class="fa fa-heart"></span> Like
-                            <input type="hidden" name="uid" value="like"/>
+                        <button type="button" onclick="btnFunction('like')" class="btn btn-outline-success btn-block">
+                            <span class="fa fa-heart"></span> Like
                         </button>
                     </div>
                     <!--/col-->
                 </div>
+             <a href="/StepProject_war/Dispatcher?uid=people-list">Liked Users</a>
                 <!--/row-->
             </div>
             <!--/card-block-->
