@@ -2,6 +2,7 @@ package com.ibatech.stepproject.dao.impl;
 
 import com.ibatech.stepproject.dao.Dao;
 import com.ibatech.stepproject.entities.Messages;
+import com.ibatech.stepproject.entities.Users;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -70,12 +71,12 @@ public class MessagesDao implements Dao<Messages> {
             return false;
         }
     }
-    public List<Messages> getUserMessages(int idUserFrom, int idUserTo){
+    public List<Messages> getUserMessages(Users userFrom, Users userTo){
       return  getEMCreator()
                 .getEntityManager()
                 .createNamedQuery("Messages.findByFromTo",Messages.class)
-                .setParameter("userFrom",idUserFrom)
-                .setParameter("userTo",idUserTo)
+                .setParameter("userFrom",userFrom)
+                .setParameter("userTo",userTo)
                 .getResultList();
 
 

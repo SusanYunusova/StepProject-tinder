@@ -31,6 +31,9 @@ public class UrlResolver {
 
     public String getUrl() {
         String uid = request.getParameter("uid");
+        if(uid==null){
+            uid="none";
+        }
         System.out.println("uid : " + uid);
         switch (uid) {
             case "login": {
@@ -39,6 +42,9 @@ public class UrlResolver {
             case "register": {
                 return "register.jsp";
             }
+            case "like-page":{
+                return "like-page.jsp";
+            }
             case "save": {
                 return ServiceFactory.getService(ServiceFactory.ServiceNames.REGISTRATION).startProcess(request, response);
             }
@@ -46,6 +52,8 @@ public class UrlResolver {
             case "like": {
                 return ServiceFactory.getService(ServiceFactory.ServiceNames.LIKES).startProcess(request, response);
             }
+            case "logout":
+                return ServiceFactory.getService(ServiceFactory.ServiceNames.LOGOUT).startProcess(request,response);
             case "people-list":
                 return ServiceFactory.getService(ServiceFactory.ServiceNames.PEOPLE_LIST).startProcess(request, response);
             case "messages":

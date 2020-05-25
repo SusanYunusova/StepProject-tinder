@@ -1,4 +1,5 @@
 package com.ibatech.stepproject.dao.impl;
+
 import com.ibatech.stepproject.dao.Dao;
 import com.ibatech.stepproject.entities.Logging_log;
 import com.sun.javafx.binding.Logging;
@@ -12,7 +13,7 @@ import java.util.stream.Collectors;
 public class LoggingDao implements Dao<Logging_log> {
     @Override
     public Optional getById(int id) {
-        return Optional.ofNullable(getEMCreator().getEntityManager().find(Logging.class,id));
+        return Optional.ofNullable(getEMCreator().getEntityManager().find(Logging.class, id));
     }
 
     @Override
@@ -22,7 +23,7 @@ public class LoggingDao implements Dao<Logging_log> {
 
     @Override
     public Collection<Logging_log> getAll() {
-        return getEMCreator().getEntityManager().createNamedQuery("Logging_log.findAll",Logging_log.class).getResultList();
+        return getEMCreator().getEntityManager().createNamedQuery("Logging_log.findAll", Logging_log.class).getResultList();
     }
 
 
@@ -38,8 +39,8 @@ public class LoggingDao implements Dao<Logging_log> {
             getEMCreator().getEntityManager().persist(data);
             getEMCreator().openTransaction();
 
-        }catch (Exception e){
-            System.out.println("error creating Logging_log "+e);
+        } catch (Exception e) {
+            System.out.println("error creating Logging_log " + e);
             getEMCreator().rollBack();
         }
 
@@ -48,12 +49,12 @@ public class LoggingDao implements Dao<Logging_log> {
 
     @Override
     public boolean delete(int id) {
-try {
-    getEMCreator().getEntityManager().remove(id);
-    return true;//todo galib
-}catch (Exception e){
-return false;
-}
+        try {
+            getEMCreator().getEntityManager().remove(id);
+            return true;//todo galib
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     @Override
@@ -61,8 +62,10 @@ return false;
         try {
             System.out.println("trying to update logging");
             getEMCreator().getEntityManager().persist(logging);
+            getEMCreator().openTransaction();
+
             return true;
-        }catch (Exception e){
+        } catch (Exception e) {
             getEMCreator().rollBack();
             return false;
 

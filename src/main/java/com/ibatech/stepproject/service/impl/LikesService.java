@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 public class LikesService implements Service {
     @Override
@@ -22,25 +23,47 @@ public class LikesService implements Service {
         String uid = request.getParameter("uid");
         if (uid.equals("like")) {
             addLikeProcess(request, 1);
-        }else {
-            addLikeProcess(request,0);
+        } else {
+            addLikeProcess(request, 0);
         }
 
-        addParametersToSession(request.getSession(), getLoggedUser(request, response).get(), getListOfUsers(), index);
+        addParametersToSession(request.getSession(), getLoggedUser(request, response).get(), getListOfUsers(getLoggedUser(request, response).get()), index);
         return "like-page.jsp";
     }
 
     private void addLikeProcess(HttpServletRequest request, Integer likeStatus) {
         Users likedUser = (Users) request.getSession().getAttribute("userToShow");
+        Optional<Users> loggedUser = getLoggedUser(request, null);
+        Likes likes;
+        try {
 
-        Likes likes = Likes
-                .builder()
-                .idLikes(0)
-                .idUserFrom(getLoggedUser(request, null).get())
-                .idUserTo(likedUser)
-                .likeStatus(likeStatus)
-                .date(new Date())
-                .build();
+       likes = DaoFactory
+                .getDao(DaoFactory.DaoNames.LIKES)
+                .getEMCreator()
+                .getEntityManager()
+                .createNamedQuery("Likes.findByLikesFromTo", Likes.class)
+                .setParameter("userFrom", loggedUser.get())
+                .setParameter("userTo", likedUser)
+                .getSingleResult();
+        }catch (Exception e){
+            System.out.println("error likes addlikeProcess");
+            likes=null;
+        }
+        if (likes == null) {
+
+            likes = Likes
+                    .builder()
+                    .idLikes(0)
+                    .idUserFrom(getLoggedUser(request, null).get())
+                    .idUserTo(likedUser)
+                    .likeStatus(likeStatus)
+                    .date(new Date())
+                    .build();
+        }else {
+            likes.setLikeStatus(likeStatus);
+            likes.setDate(new Date());
+        }
+
         DaoFactory.getDao(DaoFactory.DaoNames.LIKES).create(likes);
 
     }

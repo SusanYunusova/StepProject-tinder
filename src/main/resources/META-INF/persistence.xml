@@ -7,9 +7,10 @@
         <class>com.ibatech.stepproject.entities.Messages</class>
         <class>com.ibatech.stepproject.entities.Users</class>
         <class>com.ibatech.stepproject.entities.Likes</class>
+        <shared-cache-mode>NONE</shared-cache-mode>
         <properties>
-
-            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/tinder?zeroDateTimeBehavior=convertToNull"/>
+            <property name="eclipselink.query-results-cache" value="false"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/tinder?useUnicode=true&amp;useJDBCCompliantTimezoneShift=true&amp;useLegacyDatetimeCode=false&amp;serverTimezone=UTC"/>
             <property name="javax.persistence.jdbc.user" value="root"/>
             <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
             <property name="javax.persistence.jdbc.password" value="123456"/>

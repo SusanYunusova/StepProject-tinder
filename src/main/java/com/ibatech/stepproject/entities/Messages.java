@@ -2,6 +2,7 @@ package com.ibatech.stepproject.entities;
 
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -27,6 +28,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author Suzy
  */
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity

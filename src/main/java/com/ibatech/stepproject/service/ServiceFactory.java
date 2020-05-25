@@ -4,7 +4,7 @@ import com.ibatech.stepproject.service.impl.*;
 
 public class ServiceFactory {
     public  enum  ServiceNames{
-        LIKES,LOGIN,SESSION,MESSAGES, PEOPLE_LIST, REGISTRATION
+        LIKES,LOGIN,SESSION,MESSAGES, PEOPLE_LIST, REGISTRATION,LOGOUT
     }
 
     public static Service getService(ServiceNames serviceNames){
@@ -15,6 +15,7 @@ public class ServiceFactory {
             case MESSAGES:return new MessagesService();
             case REGISTRATION:return new RegistrationService();
             case PEOPLE_LIST:return new LikedListService();
+            case LOGOUT:return new LogoutService();
             default:return null;
         }
     }

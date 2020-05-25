@@ -9,7 +9,6 @@ import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
- *
  * @author Suzy
  */
 @Entity
@@ -23,6 +22,9 @@ import javax.xml.bind.annotation.XmlRootElement;
         @NamedQuery(name = "Likes.findAll", query = "SELECT l FROM Likes l")
         , @NamedQuery(name = "Likes.findByIdLikes", query = "SELECT l FROM Likes l WHERE l.idLikes = :idLikes")
         , @NamedQuery(name = "Likes.findByLikeStatus", query = "SELECT l FROM Likes l WHERE l.likeStatus = :likeStatus")
+        , @NamedQuery(name = "Likes.findByLikesFromTo", query = "SELECT l FROM Likes l WHERE l.idUserFrom = :userFrom and  l.idUserTo = :userTo")
+        , @NamedQuery(name = "Likes.findByLikeStatusAndIdUserFrom",
+        query = "SELECT l FROM Likes l WHERE l.likeStatus = 1 and  l.idUserFrom = :idUserFrom")
         , @NamedQuery(name = "Likes.findByDate", query = "SELECT l FROM Likes l WHERE l.date = :date")})
 public class Likes implements Serializable {
 
@@ -45,10 +47,6 @@ public class Likes implements Serializable {
     @JoinColumn(name = "id_user_to", referencedColumnName = "id")
     @ManyToOne
     private Users idUserTo;
-
-
-
-
 
 
 }

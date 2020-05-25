@@ -6,6 +6,7 @@ import com.ibatech.stepproject.entities.Users;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -14,12 +15,12 @@ public interface Service {
     String startProcess(HttpServletRequest request, HttpServletResponse response);
 
     default String openLikesPage(HttpServletRequest request, HttpServletResponse response, Users loggedUser) {
-        List<Users> all = getListOfUsers();
-        List<Users> listOfUsers = all.stream().filter(users ->
-                !users.equals(loggedUser)
-        ).collect(Collectors.toList());
-        addParametersToSession(request.getSession(), loggedUser, listOfUsers, 0);
-        return "like-page.jsp";
+        List<Users> listOfUsers = getListOfUsers(loggedUser);
+
+        if (!listOfUsers.isEmpty()) {
+            addParametersToSession(request.getSession(), loggedUser, listOfUsers, 0);
+        }  return "like-page.jsp";
+
     }
     default Optional<Users> getLoggedUser(HttpServletRequest request, HttpServletResponse response) {
         return Optional.ofNullable((Users) request.getSession().getAttribute("user"));
@@ -32,8 +33,12 @@ public interface Service {
         session.setAttribute("userToShow", listOfUsers.get(indexToShow));
     }
 
-    default List<Users> getListOfUsers() {
-        return (List<Users>) DaoFactory.getDao(DaoFactory.DaoNames.USERS).getAll();
+    default List<Users> getListOfUsers(Users loggedUser) {
+        List<Users> all = (List<Users>) DaoFactory.getDao(DaoFactory.DaoNames.USERS).getAll();
+        return all.stream().filter(user ->
+               !user.equals(loggedUser)
+        ).collect(Collectors.toList());
+
     }
 
 }

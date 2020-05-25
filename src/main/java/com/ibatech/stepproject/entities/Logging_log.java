@@ -1,24 +1,13 @@
 package com.ibatech.stepproject.entities;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.util.Date;
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -26,6 +15,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author Shafa
  */
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
@@ -48,7 +38,7 @@ public class Logging_log implements Serializable {
     private Date logDate;
 
     @JoinColumn(name = "id_user", referencedColumnName = "id")
-    @ManyToOne
+    @OneToOne
     private Users idUser;
 
 
